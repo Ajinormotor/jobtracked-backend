@@ -12,16 +12,17 @@ const protect = async (req, res, next) => {
     }
 
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // console.log('Decoed details:', decoded)
-    
-    const user = await User.findById(decoded.id);
+  console.log("Decoded ID:", decoded.id);
+const user = await User.findById(decoded.id) || await User.findOne({ email: decoded.email });
+
+// console.log("Found user:", user);
+
 
     if (!user) {
       return res.status(401).json({ message: 'No user' });
     }
 
-    req.user = { id: user._id };
+    req.user = { id: user._id, email: user.email, username: user.username };
     next();
   } catch (error) {
     console.log('Protect Error:', error.message)
