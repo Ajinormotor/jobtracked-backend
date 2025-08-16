@@ -1,3 +1,6 @@
+import User from "./user.model.js";
+
+
 export const getProfile = async (req, res) => {
   try {
     // find the user again from DB
