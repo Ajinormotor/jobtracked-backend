@@ -17,4 +17,3 @@ export default job
 
 
 
-import cron from "cron"

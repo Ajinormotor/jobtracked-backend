@@ -4,9 +4,13 @@ import cors from "cors"
 
 import authRoutes from "./auth/auth.route.js"
 import jobRoutes from "./jobs/job.route.js"
-// import job from "./lib/cron.js"
+import userRoutes from "./user/user.routes.js"
 
-import { connectDB } from "./lib/connectDB.js"
+import { connectDB } from "./config/db.js"
+import job from "./utils/cronjob.js"
+
+
+
 
 const app = express()
 dotenv.config();
