@@ -30,9 +30,8 @@ export  const updateProfile = async(req,res) => {
     const {id} = req.user
     const payload = req.body;
 
-    const updatedProfile = await User.findByIdAndUpdate({  id, payload,
-      new: true
-    }).select('-password')
+    const updatedProfile = await User.findByIdAndUpdate( id, payload,
+     {  new: true }).select('-password')
 
     if (!updatedProfile) {
       return res.status(404).json({ message: "User not found" });
