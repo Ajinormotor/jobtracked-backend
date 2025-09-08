@@ -63,13 +63,12 @@ export const updatePassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Compare current password with DB hash
+
     const isMatch = await user.comparePassword(currentPassword);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid current password" });
     }
 
-    // Set new password (pre-save hook will hash it)
     user.password = newPassword;
     await user.save();
 

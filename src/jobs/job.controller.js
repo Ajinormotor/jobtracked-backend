@@ -3,7 +3,7 @@ import Job from "./job.model.js";
 
 export const getJobs = async (req, res) => {
   try {
-    const jobs = await Job.find({ userId: req.user.id });
+    const jobs = await Job.find({ userId: req.user.id }).sort({ createdAt: -1});
 
     if (jobs.length === 0) {
       return res.status(404).json({
